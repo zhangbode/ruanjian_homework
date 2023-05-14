@@ -3,17 +3,17 @@
 #include <malloc.h>
 #define NULL 0
 #define LEN sizeof(struct Node)
-//ÄÜ¹»ÊµÏÖÏÈ½«µ¥¸ö¶àÏîÊ½ÖĞÖ¸ÊıÏàÍ¬µÄÏîºÏ²¢ÆğÀ´£¬ÔÙ½«Á½¸ö¶àÏîÊ½½øĞĞ¼Ó¼õ
-//¶øÇÒÖ§³ÖÂÒĞòÊäÈë£¬×îºó°´Ò»¶¨µÄ¸ñÊ½½µÃİÊä³ö½á¹û
+//èƒ½å¤Ÿå®ç°å…ˆå°†å•ä¸ªå¤šé¡¹å¼ä¸­æŒ‡æ•°ç›¸åŒçš„é¡¹åˆå¹¶èµ·æ¥ï¼Œå†å°†ä¸¤ä¸ªå¤šé¡¹å¼è¿›è¡ŒåŠ å‡
+//è€Œä¸”æ”¯æŒä¹±åºè¾“å…¥ï¼Œæœ€åæŒ‰ä¸€å®šçš„æ ¼å¼é™å¹‚è¾“å‡ºç»“æœ
 typedef struct Node
 {
-    int zhishu;//´æ´¢Ö¸Êı
-    int xishu;//´æ´¢ÏµÊı
+    int zhishu;//å­˜å‚¨æŒ‡æ•°
+    int xishu;//å­˜å‚¨ç³»æ•°
     struct Node* next;
 }Node, * LinkList;
 void printdxs(Node* head)
 {
-    //°´±ê×¼Êä³ö¶àÏîÊ½
+    //æŒ‰æ ‡å‡†è¾“å‡ºå¤šé¡¹å¼
     int j = 0;
     struct Node* p1;
     p1 = head;
@@ -21,7 +21,7 @@ void printdxs(Node* head)
     {
         do
         {
-            if (p1 == head && p1->xishu != 0)//ËµÃ÷Ê½µÚÒ»¸öÊı
+            if (p1 == head && p1->xishu != 0)//è¯´æ˜å¼ç¬¬ä¸€ä¸ªæ•°
             {
                 if (p1->zhishu == 0)
                 {
@@ -34,7 +34,7 @@ void printdxs(Node* head)
                     j++;
                 }
             }
-            else//ºóĞøµ¥ÏîÊ½ÅĞ¶ÏÏµÊıÕı¸ºÊä³ö
+            else//åç»­å•é¡¹å¼åˆ¤æ–­ç³»æ•°æ­£è´Ÿè¾“å‡º
             {
                 if (p1->zhishu == 0)
                 {
@@ -72,19 +72,19 @@ void printdxs(Node* head)
             p1 = p1->next;
         } while (p1 != NULL);
     }
-    if (j == 0)//¸ñÊ½Êä³ö
+    if (j == 0)//æ ¼å¼è¾“å‡º
     {
         printf("0");
     }
 }
 Node* clean(Node* a)
 {
-    //Í¨¹ı±éÀúÀ´Ê¹ÏàÍ¬Ö¸ÊıµÄÁ½ÏîºÏ²¢
+    //é€šè¿‡éå†æ¥ä½¿ç›¸åŒæŒ‡æ•°çš„ä¸¤é¡¹åˆå¹¶
     struct Node* p1, * p2, * p3;
-    //Ïàµ±ÓÚÒÑ¾­´«ÁËÁ´±íµÄ²ÎÊıµ½º¯ÊıÖĞ£¬¿ªÊ¼±éÀú
-    p1 = p2 = p3 = a;//¶¼ÏÈÖ¸ÏòÍ·
-    p2 = p3->next;//ÈÃp2Ö¸ÏòÏÂÒ»¸ö½áµã
-    while (1)//µ±Ö¸ÕëÃ»ÓĞÖ¸ÏòÁ´±íµÄ×îºó
+    //ç›¸å½“äºå·²ç»ä¼ äº†é“¾è¡¨çš„å‚æ•°åˆ°å‡½æ•°ä¸­ï¼Œå¼€å§‹éå†
+    p1 = p2 = p3 = a;//éƒ½å…ˆæŒ‡å‘å¤´
+    p2 = p3->next;//è®©p2æŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹
+    while (1)//å½“æŒ‡é’ˆæ²¡æœ‰æŒ‡å‘é“¾è¡¨çš„æœ€å
     {
         while (p1->next != NULL)
         {
@@ -92,7 +92,7 @@ Node* clean(Node* a)
 
             {
                 p3->xishu = p3->xishu + p2->xishu;
-                p1->next = p2->next;//É¾³ıp2ËùÖ¸µÄ½áµã
+                p1->next = p2->next;//åˆ é™¤p2æ‰€æŒ‡çš„ç»“ç‚¹
                 free(p2);
                 p2 = p1->next;
             }
@@ -104,26 +104,26 @@ Node* clean(Node* a)
         }
         if (p3->next == NULL)
             break;
-        p3 = p3->next;//²éÑ¯ÍêÒ»±éºó£¬ËùÓĞÏàÍ¬ÏµÊıµÄ·ÅÔÚÁËÒ»¸ö½Úµã
+        p3 = p3->next;//æŸ¥è¯¢å®Œä¸€éåï¼Œæ‰€æœ‰ç›¸åŒç³»æ•°çš„æ”¾åœ¨äº†ä¸€ä¸ªèŠ‚ç‚¹
         p1 = p3;
-        p2 = p3->next;//p2¼ÌĞøÔÚÏÂÒ»¸ö½áµã¹¤×÷
+        p2 = p3->next;//p2ç»§ç»­åœ¨ä¸‹ä¸€ä¸ªç»“ç‚¹å·¥ä½œ
     }
     return a;
 };
-Node* create(int n)//ÊµÏÖÁ´±íµÄ×é½¨
+Node* create(int n)//å®ç°é“¾è¡¨çš„ç»„å»º
 {
     struct Node* head, * p1, * p2;
-    int i = 1;//¼ÆÊıÆ÷
+    int i = 1;//è®¡æ•°å™¨
     head = p1 = p2 = (struct Node*)malloc(LEN);
     p2->next = NULL;
-    while (i <= n)//µ±Ã»ÓĞÍê³É¶àÏîÊ½µÄÈ«²¿ÊäÈëÊ±
+    while (i <= n)//å½“æ²¡æœ‰å®Œæˆå¤šé¡¹å¼çš„å…¨éƒ¨è¾“å…¥æ—¶
     {
-        if (n == 0)//µ±¶àÏîÊ½ÎªÁãÏî
+        if (n == 0)//å½“å¤šé¡¹å¼ä¸ºé›¶é¡¹
         {
             printf("error!");
             break;
         }
-        p1 = (struct Node*)malloc(LEN);//¿ª±ÙÒ»¸öĞÂ¿Õ¼ä
+        p1 = (struct Node*)malloc(LEN);//å¼€è¾Ÿä¸€ä¸ªæ–°ç©ºé—´
         printf("Please enter the %dth polynomial coefficient:", i);
         scanf_s("%d", &p1->xishu);
 
@@ -134,7 +134,7 @@ Node* create(int n)//ÊµÏÖÁ´±íµÄ×é½¨
         p2 = p1;
     }
     p2->next = NULL;
-    p1 = head->next;//½«p1Ö¸ÏòheadµÄÏÂÒ»¸ö½áµã
+    p1 = head->next;//å°†p1æŒ‡å‘headçš„ä¸‹ä¸€ä¸ªç»“ç‚¹
     p1 = clean(p1);
     printdxs(p1);
 
@@ -142,13 +142,13 @@ Node* create(int n)//ÊµÏÖÁ´±íµÄ×é½¨
 };
 Node* paixu(struct Node* head)
 {
-    //ÊµÏÖ½µÃİÅÅĞò
+    //å®ç°é™å¹‚æ’åº
     struct Node* p1, * p2, * p3;//
     int flag;
     p1 = head->next;
     p2 = p1->next;
     p3 = p1;
-    while (p1->next != NULL)//Ñ¡ÔñÅÅĞò£¬°´ÕÕÖ¸ÊıÊµÏÖ½µÃİÅÅĞò
+    while (p1->next != NULL)//é€‰æ‹©æ’åºï¼ŒæŒ‰ç…§æŒ‡æ•°å®ç°é™å¹‚æ’åº
     {
         while (p2 != NULL)
         {
@@ -156,7 +156,7 @@ Node* paixu(struct Node* head)
                 p3 = p2;
             p2 = p2->next;
         }
-        //µ±×ßÍêÒ»ÂÖºóÕÒµ½µ±Ç°×î´óµÄÖ¸Êı£¬¿ªÊ¼½»»»
+        //å½“èµ°å®Œä¸€è½®åæ‰¾åˆ°å½“å‰æœ€å¤§çš„æŒ‡æ•°ï¼Œå¼€å§‹äº¤æ¢
         flag = p3->zhishu;
         p3->zhishu = p1->zhishu;
         p1->zhishu = flag;
@@ -171,12 +171,12 @@ Node* paixu(struct Node* head)
 }
 Node* jiajian(Node* a, Node* b, int m, int d)//
 {
-    //ÊµÏÖ¼Ó¼õ·¨
+    //å®ç°åŠ å‡æ³•
     Node* a1, * b1, * b2;
     b1 = b;
     b2 = b->next;
     a1 = a->next;
-    if (d == 2)//ÎªµÚ¶ş¸ö¶àÏîÊ½ÏµÊı¸³ÖµÎª¸º£¬´ïµ½¼õ·¨µÄ¹¦ÄÜ
+    if (d == 2)//ä¸ºç¬¬äºŒä¸ªå¤šé¡¹å¼ç³»æ•°èµ‹å€¼ä¸ºè´Ÿï¼Œè¾¾åˆ°å‡æ³•çš„åŠŸèƒ½
     {
         while (b2 != NULL)
         {
@@ -189,9 +189,9 @@ Node* jiajian(Node* a, Node* b, int m, int d)//
     {
         while (b2 != NULL)
         {
-            if (b2->zhishu == a1->zhishu)//Ö¸ÊıÏàµÈ
+            if (b2->zhishu == a1->zhishu)//æŒ‡æ•°ç›¸ç­‰
             {
-                a1->xishu = a1->xishu + b2->xishu;//Ö®ºó½«µÚ¶ş¸öÁ´±íÖĞµÄ¸Ã½ÚµãÉ¾³ı
+                a1->xishu = a1->xishu + b2->xishu;//ä¹‹åå°†ç¬¬äºŒä¸ªé“¾è¡¨ä¸­çš„è¯¥èŠ‚ç‚¹åˆ é™¤
                 b1->next = b2->next;
                 free(b2);
                 b2 = b1->next;
@@ -199,16 +199,16 @@ Node* jiajian(Node* a, Node* b, int m, int d)//
             else
             {
                 b1 = b2;
-                b2 = b2->next;//Íùºó×ß
+                b2 = b2->next;//å¾€åèµ°
             }
         }
         a1 = a1->next;
         b1 = b;
         b2 = b->next;
     }
-    //µ±±éÀúÍêµÚÒ»¸öÁ´±íµÄ½áµãºó£¬²é¿´µÚ¶ş¸öÁ´±íÖĞÊÇ·ñ»¹ÓĞÊ£ÓàµÄ½áµã£¬½«Ê£Óà½áµã²åÈëµ½AÁ´±íÖĞ
-    b1 = b->next;//ÈÃÖ¸ÕëÖ¸ÏòÍ·²¿
-    while (b1 != NULL)//µ±Á´±í²»Îª¿Õ
+    //å½“éå†å®Œç¬¬ä¸€ä¸ªé“¾è¡¨çš„ç»“ç‚¹åï¼ŒæŸ¥çœ‹ç¬¬äºŒä¸ªé“¾è¡¨ä¸­æ˜¯å¦è¿˜æœ‰å‰©ä½™çš„ç»“ç‚¹ï¼Œå°†å‰©ä½™ç»“ç‚¹æ’å…¥åˆ°Aé“¾è¡¨ä¸­
+    b1 = b->next;//è®©æŒ‡é’ˆæŒ‡å‘å¤´éƒ¨
+    while (b1 != NULL)//å½“é“¾è¡¨ä¸ä¸ºç©º
     {
         b2 = b1->next;
         b1->next = a->next;
@@ -235,7 +235,7 @@ void txt(Node* head)
     {
         do
         {
-            if (p1 == head && p1->xishu != 0)//ËµÃ÷Ê½µÚÒ»¸öÊı
+            if (p1 == head && p1->xishu != 0)//è¯´æ˜å¼ç¬¬ä¸€ä¸ªæ•°
             {
                 if (p1->zhishu == 0)
                 {
@@ -286,7 +286,7 @@ void txt(Node* head)
             p1 = p1->next;
         } while (p1 != NULL);
     }
-    if (j == 0)//¸ñÊ½Êä³ö
+    if (j == 0)//æ ¼å¼è¾“å‡º
     {
         fprintf(fp, "0");
     }
@@ -296,7 +296,7 @@ void txt(Node* head)
 int main()
 {
     
-    int m, n, i;//³õÊ¼»¯Á´±í½áµãµÄ×ÜÊı
+    int m, n, i;//åˆå§‹åŒ–é“¾è¡¨ç»“ç‚¹çš„æ€»æ•°
     printf("To clear the original data in the file, please enter: (1 for YES, 2 for NO)\n");
     scanf_s("%d", &i);
     if (i == 1)
@@ -309,7 +309,7 @@ int main()
     scanf_s("%d", &m);
     printf("Please enter how many terms the second polynomial consists of:\n");
     scanf_s("%d", &n);
-    Node* a, * b, * c;//½¨Á¢Á½¸ö¶àÏîÊ½Á´±í
+    Node* a, * b, * c;//å»ºç«‹ä¸¤ä¸ªå¤šé¡¹å¼é“¾è¡¨
     printf("Please enter the information of the first polynomial:\n");
     a = (Node*)create(m);
     txt(a);
